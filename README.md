@@ -204,36 +204,7 @@ A detailed list of selected employees with:
 - Return on investment metrics
 - Cost per improvement point
 
-### 5. Results Export
 
-CSV file containing complete training allocation results for implementation and tracking purposes.
-
----
-
-## Technical Requirements
-
-### Dependencies
-
-```
-- Python 3.8+
-- pandas
-- numpy
-- PuLP (Linear Programming solver)
-```
-
-### Installation
-
-```bash
-pip install pandas numpy pulp
-```
-
-### Execution
-
-```bash
-python main.py
-```
-
----
 
 ## Solution Benefits
 
@@ -288,25 +259,3 @@ The model provides a data-driven, transparent framework for resource allocation 
 
 ---
 
-## References
-
-1. Linear Programming and Optimization Theory
-2. Human Resource Analytics and Workforce Planning
-3. Employee Training and Development Best Practices
-4. Fairness and Equity in Algorithmic Decision-Making
-5. Operations Research Applications in HR Management
-
----
-
-## Project Information
-
-**Course**: Prescriptive Data Science  
-**Implementation**: Python with PuLP Optimization Library  
-**Problem Type**: Integer Linear Programming (ILP)  
-**Application Domain**: Human Resource Management
-
----
-
-## Author Notes
-
-This implementation serves as a demonstration of prescriptive analytics techniques applied to real-world business problems. The model can be adapted and extended based on specific organizational requirements and constraints.

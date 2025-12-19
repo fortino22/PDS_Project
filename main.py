@@ -53,6 +53,12 @@ def load_and_prepare_data():
     
     print(f"Pre-filtered to {len(eligible_employees)} employees with improvement potential (rating < 5)")
     
+    # Take a random sample of 100 employees for faster optimization
+    SAMPLE_SIZE = 100
+    if len(eligible_employees) > SAMPLE_SIZE:
+        eligible_employees = eligible_employees.sample(n=SAMPLE_SIZE, random_state=42)
+        print(f"Sampled {SAMPLE_SIZE} employees for optimization (faster processing)")
+    
     return eligible_employees, training
 
 

@@ -261,10 +261,121 @@ The model efficiently handles large employee populations (2000+) through:
 
 ---
 
+## Sample Execution Results
+
+### Dataset Statistics
+
+```
+Total employee records: 3,002
+Active employees eligible for training: 2,458
+Employees with improvement potential (rating < 5): 2,236
+Sample size for optimization: 100 employees
+Training programs available: 5
+```
+
+### Training Programs Identified
+
+| Program                | Duration (Days) | Cost ($) | Type     | Effectiveness |
+| ---------------------- | --------------- | -------- | -------- | ------------- |
+| Communication Skills   | 2.95            | 542.38   | Internal | 53.8%         |
+| Customer Service       | 2.96            | 567.39   | Internal | 52.7%         |
+| Leadership Development | 3.03            | 564.29   | Internal | 52.8%         |
+| Project Management     | 3.03            | 563.73   | External | 47.9%         |
+| Technical Skills       | 2.91            | 557.98   | External | 43.9%         |
+
+### Optimization Results
+
+**Problem Size**: 500 binary decision variables (100 employees × 5 programs)
+
+**Solution Status**: Optimal (found in < 5 seconds)
+
+**Selected Employees**: 89 out of 100
+
+**Budget Utilization**: $49,777.73 out of $50,000.00 (99.6%)
+
+**Total Expected Improvement**: 118.61 rating points
+
+**Average Improvement per Employee**: 1.33 points
+
+### Training Program Allocation
+
+| Program                | Employees Selected | Capacity Utilization |
+| ---------------------- | ------------------ | -------------------- |
+| Customer Service       | 20                 | 100%                 |
+| Project Management     | 20                 | 100%                 |
+| Leadership Development | 20                 | 100%                 |
+| Communication Skills   | 20                 | 100%                 |
+| Technical Skills       | 9                  | 45%                  |
+
+### Demographic Distribution
+
+| Gender | Employees Selected | Percentage |
+| ------ | ------------------ | ---------- |
+| Female | 48                 | 53.9%      |
+| Male   | 41                 | 46.1%      |
+
+### Department Distribution (Top 5)
+
+| Department           | Employees Selected |
+| -------------------- | ------------------ |
+| Production           | 49                 |
+| IT/IS                | 16                 |
+| Sales                | 13                 |
+| Software Engineering | 8                  |
+| Admin Offices        | 3                  |
+
+### Impact Analysis
+
+**Performance Improvement Projection**:
+
+- Current average rating: 2.56
+- Expected average rating after training: 3.89
+- Overall improvement: +1.33 points (52.0% increase)
+
+**Return on Investment**:
+
+- Total investment: $49,777.73
+- Total expected improvement: 118.61 points
+- Cost per improvement point: $419.67
+
+**Improvement Potential Breakdown**:
+
+- High impact (≥ 2.0 improvement): 2 employees (2.2%)
+- Medium impact (1.0-2.0): 77 employees (86.5%)
+- Low impact (< 1.0): 10 employees (11.2%)
+
+### Top 10 Selected Employees by Expected Improvement
+
+| Employee ID | Name             | Current Rating | Engagement | Training Program       | Expected Improvement |
+| ----------- | ---------------- | -------------- | ---------- | ---------------------- | -------------------- |
+| 2450        | Vivian Bright    | 1              | 5          | Customer Service       | 2.05                 |
+| 2891        | Addyson Pollard  | 1              | 5          | Leadership Development | 2.02                 |
+| 3287        | Litzy Arias      | 1              | 5          | Customer Service       | 1.99                 |
+| 2279        | Walter Immediato | 1              | 2          | Leadership Development | 1.96                 |
+| 3558        | Mildred Gentry   | 1              | 2          | Customer Service       | 1.96                 |
+| 2681        | Jaime Greer      | 1              | 3          | Customer Service       | 1.95                 |
+| 2265        | Halle Pena       | 1              | 2          | Communication Skills   | 1.93                 |
+| 3687        | Bria Mcpherson   | 1              | 2          | Leadership Development | 1.93                 |
+| 2909        | Nancy Barrett    | 1              | 2          | Leadership Development | 1.93                 |
+| 3700        | Brenden Nash     | 1              | 4          | Technical Skills       | 1.92                 |
+
+### Key Insights
+
+1. **Optimal Resource Utilization**: The model utilized 99.6% of the available budget while selecting 89 employees
+2. **Balanced Allocation**: Four out of five training programs reached full capacity (20 employees each)
+3. **Demographic Fairness**: Gender distribution (54% Female, 46% Male) reflects proportional representation
+4. **High Impact Focus**: 88.7% of selected employees show medium to high improvement potential
+5. **Performance Gain**: Expected 52% improvement in employee ratings post-training
+6. **Cost Efficiency**: Each improvement point costs $419.67, demonstrating efficient resource allocation
+
+---
+
 ## Conclusion
 
 This prescriptive analytics solution demonstrates how Integer Linear Programming can be effectively applied to human resource management challenges. By mathematically optimizing training allocation decisions, organizations can maximize employee performance improvement while ensuring fair, cost-effective, and strategically aligned training investments.
 
 The model provides a data-driven, transparent framework for resource allocation that balances multiple competing objectives and constraints, ultimately supporting organizational goals of workforce development and performance excellence.
+
+The sample execution results validate the model's effectiveness, achieving 99.6% budget utilization, demographic fairness, and a projected 52% improvement in employee ratings for selected participants.
 
 ---

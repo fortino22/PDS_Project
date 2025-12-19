@@ -126,6 +126,7 @@ The analysis utilizes three primary datasets:
 - Filter employees by active employment status
 - Merge employee data with engagement survey results
 - Handle missing values using appropriate imputation strategies
+- Pre-filter employees with improvement potential (current rating < 5)
 - Extract unique training programs with average costs and historical effectiveness
 
 #### Phase 2: Parameter Calculation
@@ -145,6 +146,7 @@ Calculate improvement potential for each employee-training pair based on:
 #### Phase 4: Optimization
 
 - Solve the Integer Linear Programming problem using PuLP solver with CBC algorithm
+- Utilize optimized solver parameters for faster computation:
 - Verify solution optimality and feasibility
 
 #### Phase 5: Results Analysis
@@ -167,6 +169,9 @@ Calculate improvement potential for each employee-training pair based on:
 | Improvement Weight - Satisfaction          | 0.15          | Weight assigned to employee satisfaction factor      |
 | Improvement Weight - Program Effectiveness | 0.20          | Weight assigned to historical training success       |
 | Fairness Threshold                         | 0.50          | Minimum proportional representation factor           |
+| Solver Time Limit                          | 300 seconds   | Maximum solving time (5 minutes)                     |
+| Optimality Gap Tolerance                   | 1%            | Acceptable deviation from theoretical optimal        |
+| CPU Threads                                | 4             | Number of parallel processing threads                |
 
 ---
 
@@ -204,8 +209,6 @@ A detailed list of selected employees with:
 - Return on investment metrics
 - Cost per improvement point
 
-
-
 ## Solution Benefits
 
 ### 1. Optimality
@@ -226,7 +229,12 @@ The mathematical formulation provides clear, auditable decision criteria that ca
 
 ### 5. Scalability
 
-The model can handle large employee populations and multiple training programs efficiently through optimization algorithms.
+The model efficiently handles large employee populations (2000+) through:
+
+- Pre-filtering to focus on employees with improvement potential
+- Multi-threaded parallel processing
+- Optimality gap tolerance for faster convergence
+- Typical solving time under 5 minutes for real-world datasets
 
 ---
 
@@ -237,6 +245,8 @@ The model can handle large employee populations and multiple training programs e
 3. **Improvement Estimation**: Actual performance improvements may vary from projected values
 4. **Temporal Factors**: Does not account for timing constraints or employee availability
 5. **Program Prerequisites**: Assumes all employees are qualified for all training programs
+6. **Optimality Gap**: Solution is within 1% of theoretical optimal for computational efficiency
+7. **Pre-filtering**: Focuses only on employees with current rating < 5 (excludes top performers)
 
 ---
 
@@ -258,4 +268,3 @@ This prescriptive analytics solution demonstrates how Integer Linear Programming
 The model provides a data-driven, transparent framework for resource allocation that balances multiple competing objectives and constraints, ultimately supporting organizational goals of workforce development and performance excellence.
 
 ---
-

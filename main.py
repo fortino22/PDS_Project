@@ -45,12 +45,15 @@ def load_and_prepare_data():
         how='left'
     )
     
-    # Handle missing engagement scores
     active_employees['Engagement Score'].fillna(3, inplace=True)
     active_employees['Satisfaction Score'].fillna(3, inplace=True)
     active_employees['Work-Life Balance Score'].fillna(3, inplace=True)
     
-    return active_employees, training
+    eligible_employees = active_employees[active_employees['Current Employee Rating'] < 5].copy()
+    
+    print(f"Pre-filtered to {len(eligible_employees)} employees with improvement potential (rating < 5)")
+    
+    return eligible_employees, training
 
 
 def extract_training_programs(training_df):
@@ -249,8 +252,19 @@ def solve_optimization(prob):
     print("SOLVING OPTIMIZATION PROBLEM")
     print("="*80)
     
-    # Solve the problem
-    prob.solve(PULP_CBC_CMD(msg=0))
+    # Solve the problem with optimized parameters for faster solving
+    # timeLimit: Maximum solving time in seconds
+    # gapRel: Accept solution within 1% of optimal (much faster)
+    # threads: Use multiple CPU cores
+    solver = PULP_CBC_CMD(
+        msg=1,           # Show solver progress
+        timeLimit=300,   # Max 5 minutes
+        gapRel=0.01,     # Accept 1% from optimal (speeds up significantly)
+        threads=4        # Use 4 CPU threads
+    )
+    
+    print("Solving with CBC optimizer (max 5 minutes, 1% optimality gap)...")
+    prob.solve(solver)
     
     # Check solution status
     status = LpStatus[prob.status]
@@ -399,6 +413,7 @@ def main():
     """Main execution function"""
     
     print("\n" + "="*80)
+    print(f"   Optimization: Fast mode (1% optimality gap, multi-threaded)")
     print("PRESCRIPTIVE ANALYTICS: TRAINING ALLOCATION OPTIMIZATION")
     print("Using Integer Linear Programming (ILP)")
     print("="*80)
